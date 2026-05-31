@@ -240,7 +240,8 @@ a:hover { color: #7fb0ff; }
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { color: var(--muted); font-size: 14px; }
 .footer-links a:hover { color: var(--text); }
-.footer-note { width: 100%; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--border); padding-top: 18px; }
+.footer-note { width: 100%; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--border); padding-top: 18px; line-height: 1.7; }
+.footer-note a { color: var(--brand); }
 
 /* Legal pages */
 .legal { padding: 56px 0 80px; }
