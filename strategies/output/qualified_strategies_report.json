@@ -1,0 +1,1640 @@
+{
+  "line": "strategies_paper_evaluation",
+  "observation_stop_utc": "2026-11-15T16:00:00+00:00",
+  "soak_end_search": {
+    "strategies_tree": "no SOAK_END and no 截止到11月15 marker",
+    "journals": "SOAK_END mostly N/A; no strategies soak end on 2026-11-15",
+    "aligned_to": "JCD PROJECT_END_EXCLUSIVE 2026-11-15T16:00:00+00:00"
+  },
+  "live_trading": "DENY",
+  "banned_promotion": "copper-only ATR 1.0/2.5 signed hybrid exit",
+  "gate": {
+    "train_symbols": [
+      "CU",
+      "SR"
+    ],
+    "holdout_fraction": 0.3,
+    "quality_pass": "closed_trades>=8, realized_points>0, profit_factor>1 when defined",
+    "keeper": "at least two symbols quality_pass on holdout, and no symbol with >=8 trades and profit factor < 0.90",
+    "pnl": "gross price points from paper fills; null when there is no closed trade; commission not invented"
+  },
+  "audits": [
+    {
+      "symbol": "CU",
+      "usable_daily": true,
+      "rows": 4450,
+      "start": "2010-01-04 00:00:00",
+      "end": "2026-02-13 00:00:00"
+    },
+    {
+      "symbol": "SR",
+      "usable_daily": true,
+      "rows": 3916,
+      "start": "2010-01-04 00:00:00",
+      "end": "2026-02-13 00:00:00"
+    },
+    {
+      "symbol": "I",
+      "usable_daily": true,
+      "rows": 1315,
+      "start": "2020-08-04 00:00:00",
+      "end": "2026-02-13 00:00:00"
+    },
+    {
+      "symbol": "MA",
+      "usable_daily": true,
+      "rows": 2840,
+      "start": "2014-06-17 00:00:00",
+      "end": "2026-02-13 00:00:00"
+    },
+    {
+      "symbol": "RB",
+      "usable_daily": true,
+      "rows": 504,
+      "start": "2023-01-02 00:00:00",
+      "end": "2024-12-05 00:00:00"
+    },
+    {
+      "symbol": "AU",
+      "usable_daily": true,
+      "rows": 504,
+      "start": "2023-01-02 00:00:00",
+      "end": "2024-12-05 00:00:00"
+    },
+    {
+      "symbol": "IF",
+      "usable_daily": true,
+      "rows": 504,
+      "start": "2023-01-02 00:00:00",
+      "end": "2024-12-05 00:00:00"
+    }
+  ],
+  "keeper_count": 5,
+  "keepers": [
+    {
+      "family": "sma_cross",
+      "timeframe": "1h",
+      "params": {
+        "fast": 10,
+        "slow": 40
+      },
+      "train_min_points": 820.0,
+      "symbols": {
+        "CU": {
+          "train": {
+            "closed_trades": 868,
+            "realized_points": 23140.0,
+            "profit_factor": 1.0837768364650084,
+            "max_drawdown_points": 25440.0,
+            "win_rate": 0.3433179723502304,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 358,
+            "realized_points": 21870.0,
+            "profit_factor": 1.1734888148500715,
+            "max_drawdown_points": 16970.0,
+            "win_rate": 0.3659217877094972,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "SR": {
+          "train": {
+            "closed_trades": 684,
+            "realized_points": 820.0,
+            "profit_factor": 1.0356366797044763,
+            "max_drawdown_points": 1957.0,
+            "win_rate": 0.3742690058479532,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 281,
+            "realized_points": 1571.0,
+            "profit_factor": 1.218164143868907,
+            "max_drawdown_points": 598.0,
+            "win_rate": 0.3665480427046263,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "I": {
+          "train": {
+            "closed_trades": 584,
+            "realized_points": 844.0,
+            "profit_factor": 1.168850655196559,
+            "max_drawdown_points": 387.5,
+            "win_rate": 0.3715753424657534,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 244,
+            "realized_points": 239.5,
+            "profit_factor": 1.1234854343903067,
+            "max_drawdown_points": 371.0,
+            "win_rate": 0.32786885245901637,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "MA": {
+          "train": {
+            "closed_trades": 551,
+            "realized_points": 1746.0,
+            "profit_factor": 1.1251343797032896,
+            "max_drawdown_points": 1303.0,
+            "win_rate": 0.3502722323049002,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 232,
+            "realized_points": -456.0,
+            "profit_factor": 0.9012773327560077,
+            "max_drawdown_points": 958.0,
+            "win_rate": 0.36637931034482757,
+            "quality_pass": false,
+            "pnl_source": "paper_limit_fills"
+          }
+        }
+      },
+      "passing_symbols": [
+        "CU",
+        "SR",
+        "I"
+      ],
+      "awful_symbols": [],
+      "keeper": true,
+      "allow_live_trading": false,
+      "class_name": "Keeper_SmaCross_1h"
+    },
+    {
+      "family": "pullback",
+      "timeframe": "1h",
+      "params": {
+        "fast": 10,
+        "slow": 40
+      },
+      "train_min_points": 1852.0,
+      "symbols": {
+        "CU": {
+          "train": {
+            "closed_trades": 1638,
+            "realized_points": 56620.0,
+            "profit_factor": 1.201229697551267,
+            "max_drawdown_points": 15270.0,
+            "win_rate": 0.2515262515262515,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 695,
+            "realized_points": 11410.0,
+            "profit_factor": 1.0754280425728828,
+            "max_drawdown_points": 16560.0,
+            "win_rate": 0.2503597122302158,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "SR": {
+          "train": {
+            "closed_trades": 1295,
+            "realized_points": 1852.0,
+            "profit_factor": 1.0735884292923272,
+            "max_drawdown_points": 2174.0,
+            "win_rate": 0.261003861003861,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 554,
+            "realized_points": -9.0,
+            "profit_factor": 0.9989715461090161,
+            "max_drawdown_points": 1743.0,
+            "win_rate": 0.24548736462093862,
+            "quality_pass": false,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "I": {
+          "train": {
+            "closed_trades": 1091,
+            "realized_points": 1031.5,
+            "profit_factor": 1.187989794058684,
+            "max_drawdown_points": 307.5,
+            "win_rate": 0.25756186984417967,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 475,
+            "realized_points": 456.0,
+            "profit_factor": 1.2197060949168874,
+            "max_drawdown_points": 212.0,
+            "win_rate": 0.2736842105263158,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "MA": {
+          "train": {
+            "closed_trades": 931,
+            "realized_points": 4500.0,
+            "profit_factor": 1.3252385082393756,
+            "max_drawdown_points": 830.0,
+            "win_rate": 0.2771213748657358,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 452,
+            "realized_points": 158.0,
+            "profit_factor": 1.0320291911615649,
+            "max_drawdown_points": 871.0,
+            "win_rate": 0.2809734513274336,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        }
+      },
+      "passing_symbols": [
+        "CU",
+        "I",
+        "MA"
+      ],
+      "awful_symbols": [],
+      "keeper": true,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Pullback_1h"
+    },
+    {
+      "family": "gap_follow",
+      "timeframe": "1h",
+      "params": {
+        "threshold": 0.0
+      },
+      "train_min_points": 1174.0,
+      "symbols": {
+        "CU": {
+          "train": {
+            "closed_trades": 10077,
+            "realized_points": 14120.0,
+            "profit_factor": 1.018986660929432,
+            "max_drawdown_points": 22180.0,
+            "win_rate": 0.44646224074625385,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 4680,
+            "realized_points": 21980.0,
+            "profit_factor": 1.052520908004779,
+            "max_drawdown_points": 15440.0,
+            "win_rate": 0.4636752136752137,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "SR": {
+          "train": {
+            "closed_trades": 8767,
+            "realized_points": 1174.0,
+            "profit_factor": 1.016841682446778,
+            "max_drawdown_points": 4304.0,
+            "win_rate": 0.45454545454545453,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 3819,
+            "realized_points": 2742.0,
+            "profit_factor": 1.1198740928565183,
+            "max_drawdown_points": 1077.0,
+            "win_rate": 0.4616391725582613,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "I": {
+          "train": {
+            "closed_trades": 6470,
+            "realized_points": 912.0,
+            "profit_factor": 1.0697541014952772,
+            "max_drawdown_points": 695.0,
+            "win_rate": 0.49412673879443586,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 3093,
+            "realized_points": -212.0,
+            "profit_factor": 0.9646843245044144,
+            "max_drawdown_points": 484.0,
+            "win_rate": 0.4439055932751374,
+            "quality_pass": false,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "MA": {
+          "train": {
+            "closed_trades": 6881,
+            "realized_points": -2683.0,
+            "profit_factor": 0.9380040206114102,
+            "max_drawdown_points": 3624.0,
+            "win_rate": 0.43641912512716174,
+            "quality_pass": false,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 2893,
+            "realized_points": -1137.0,
+            "profit_factor": 0.9145690885866706,
+            "max_drawdown_points": 1318.0,
+            "win_rate": 0.4141030072589008,
+            "quality_pass": false,
+            "pnl_source": "paper_limit_fills"
+          }
+        }
+      },
+      "passing_symbols": [
+        "CU",
+        "SR"
+      ],
+      "awful_symbols": [],
+      "keeper": true,
+      "allow_live_trading": false,
+      "class_name": "Keeper_GapFollow_1h"
+    },
+    {
+      "family": "orb",
+      "timeframe": "1h",
+      "params": {},
+      "train_min_points": 1718.0,
+      "symbols": {
+        "CU": {
+          "train": {
+            "closed_trades": 3135,
+            "realized_points": 60060.0,
+            "profit_factor": 1.1264128307128876,
+            "max_drawdown_points": 18390.0,
+            "win_rate": 0.47240829346092506,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 1408,
+            "realized_points": 19650.0,
+            "profit_factor": 1.0764353508635445,
+            "max_drawdown_points": 11640.0,
+            "win_rate": 0.44389204545454547,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "SR": {
+          "train": {
+            "closed_trades": 2234,
+            "realized_points": 1718.0,
+            "profit_factor": 1.0590378006872851,
+            "max_drawdown_points": 1534.0,
+            "win_rate": 0.4735899731423456,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 1079,
+            "realized_points": -608.0,
+            "profit_factor": 0.9515267479869249,
+            "max_drawdown_points": 1609.0,
+            "win_rate": 0.47544022242817424,
+            "quality_pass": false,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "I": {
+          "train": {
+            "closed_trades": 2009,
+            "realized_points": 2298.0,
+            "profit_factor": 1.3459801264679314,
+            "max_drawdown_points": 167.0,
+            "win_rate": 0.48929815828770534,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 901,
+            "realized_points": 140.0,
+            "profit_factor": 1.0465270854104354,
+            "max_drawdown_points": 325.0,
+            "win_rate": 0.47835738068812433,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "MA": {
+          "train": {
+            "closed_trades": 1793,
+            "realized_points": 3442.0,
+            "profit_factor": 1.2036686390532545,
+            "max_drawdown_points": 873.0,
+            "win_rate": 0.49302844394868933,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 811,
+            "realized_points": 1050.0,
+            "profit_factor": 1.1834381551362683,
+            "max_drawdown_points": 281.0,
+            "win_rate": 0.4969173859432799,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        }
+      },
+      "passing_symbols": [
+        "CU",
+        "I",
+        "MA"
+      ],
+      "awful_symbols": [],
+      "keeper": true,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Orb_1h"
+    },
+    {
+      "family": "consec",
+      "timeframe": "4h",
+      "params": {
+        "length": 5
+      },
+      "train_min_points": 672.0,
+      "symbols": {
+        "CU": {
+          "train": {
+            "closed_trades": 160,
+            "realized_points": 2260.0,
+            "profit_factor": 1.0471127788200958,
+            "max_drawdown_points": 8790.0,
+            "win_rate": 0.65625,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 68,
+            "realized_points": 9720.0,
+            "profit_factor": 1.4597918637653737,
+            "max_drawdown_points": 5720.0,
+            "win_rate": 0.6323529411764706,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "SR": {
+          "train": {
+            "closed_trades": 123,
+            "realized_points": 672.0,
+            "profit_factor": 1.270640354409988,
+            "max_drawdown_points": 857.0,
+            "win_rate": 0.6829268292682927,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 58,
+            "realized_points": 346.0,
+            "profit_factor": 1.411904761904762,
+            "max_drawdown_points": 392.0,
+            "win_rate": 0.6206896551724138,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "I": {
+          "train": {
+            "closed_trades": 114,
+            "realized_points": -256.0,
+            "profit_factor": 0.7377049180327869,
+            "max_drawdown_points": 398.5,
+            "win_rate": 0.5701754385964912,
+            "quality_pass": false,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 42,
+            "realized_points": 25.5,
+            "profit_factor": 1.1042944785276074,
+            "max_drawdown_points": 104.0,
+            "win_rate": 0.6666666666666666,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        },
+        "MA": {
+          "train": {
+            "closed_trades": 99,
+            "realized_points": -100.0,
+            "profit_factor": 0.9472016895459345,
+            "max_drawdown_points": 536.0,
+            "win_rate": 0.6767676767676768,
+            "quality_pass": false,
+            "pnl_source": "paper_limit_fills"
+          },
+          "holdout": {
+            "closed_trades": 48,
+            "realized_points": 331.0,
+            "profit_factor": 1.8233830845771144,
+            "max_drawdown_points": 139.0,
+            "win_rate": 0.6041666666666666,
+            "quality_pass": true,
+            "pnl_source": "paper_limit_fills"
+          }
+        }
+      },
+      "passing_symbols": [
+        "CU",
+        "SR",
+        "I",
+        "MA"
+      ],
+      "awful_symbols": [],
+      "keeper": true,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Consec_4h"
+    }
+  ],
+  "rejected_count": 59,
+  "rejected": [
+    {
+      "family": "ema_cross",
+      "timeframe": "1d",
+      "params": {
+        "fast": 8,
+        "slow": 40
+      },
+      "train_min_points": 3834.0,
+      "passing_symbols": [],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "I",
+        "MA",
+        "IF"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_EmaCross_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": [
+        "CU",
+        "SR",
+        "I",
+        "MA",
+        "IF"
+      ]
+    },
+    {
+      "family": "sma_cross",
+      "timeframe": "1d",
+      "params": {
+        "fast": 20,
+        "slow": 80
+      },
+      "train_min_points": 4068.0,
+      "passing_symbols": [
+        "CU",
+        "SR"
+      ],
+      "awful_symbols": [
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_SmaCross_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "SR"
+      ],
+      "awful": [
+        "MA"
+      ]
+    },
+    {
+      "family": "ema_cross_long",
+      "timeframe": "1d",
+      "params": {
+        "fast": 10,
+        "slow": 40
+      },
+      "train_min_points": 1623.0,
+      "passing_symbols": [],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_EmaCrossLong_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": [
+        "CU",
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "donchian",
+      "timeframe": "1d",
+      "params": {
+        "length": 120
+      },
+      "train_min_points": 310.0,
+      "passing_symbols": [],
+      "awful_symbols": [],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Donchian_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": []
+    },
+    {
+      "family": "keltner",
+      "timeframe": "1d",
+      "params": {
+        "length": 40,
+        "width": 1.5
+      },
+      "train_min_points": 2334.0,
+      "passing_symbols": [],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Keltner_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": [
+        "CU",
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "bb_break",
+      "timeframe": "1d",
+      "params": {
+        "length": 40,
+        "width": 2.0
+      },
+      "train_min_points": 4560.0,
+      "passing_symbols": [],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_BbBreak_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": [
+        "CU",
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "bb_fade",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "rsi_fade",
+      "timeframe": "1d",
+      "params": {
+        "length": 14,
+        "low": 20,
+        "high": 80
+      },
+      "train_min_points": 397.0,
+      "passing_symbols": [],
+      "awful_symbols": [],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_RsiFade_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": []
+    },
+    {
+      "family": "zscore",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "consec",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "ts_momentum",
+      "timeframe": "1d",
+      "params": {
+        "length": 20
+      },
+      "train_min_points": 3635.0,
+      "passing_symbols": [
+        "AU"
+      ],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "I",
+        "MA",
+        "RB",
+        "IF"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_TsMomentum_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "AU"
+      ],
+      "awful": [
+        "CU",
+        "SR",
+        "I",
+        "MA",
+        "RB",
+        "IF"
+      ]
+    },
+    {
+      "family": "macd",
+      "timeframe": "1d",
+      "params": {
+        "fast": 12,
+        "slow": 26,
+        "signal": 9
+      },
+      "train_min_points": 326.0,
+      "passing_symbols": [],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "I",
+        "MA",
+        "RB",
+        "AU",
+        "IF"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Macd_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": [
+        "CU",
+        "SR",
+        "I",
+        "MA",
+        "RB",
+        "AU",
+        "IF"
+      ]
+    },
+    {
+      "family": "triple_ema",
+      "timeframe": "1d",
+      "params": {
+        "fast": 10,
+        "mid": 30,
+        "slow": 90
+      },
+      "train_min_points": 1585.0,
+      "passing_symbols": [],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "I",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_TripleEma_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": [
+        "CU",
+        "SR",
+        "I",
+        "MA"
+      ]
+    },
+    {
+      "family": "pullback",
+      "timeframe": "1d",
+      "params": {
+        "fast": 10,
+        "slow": 40
+      },
+      "train_min_points": 3984.0,
+      "passing_symbols": [
+        "CU",
+        "MA"
+      ],
+      "awful_symbols": [
+        "SR",
+        "I",
+        "IF"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Pullback_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "MA"
+      ],
+      "awful": [
+        "SR",
+        "I",
+        "IF"
+      ]
+    },
+    {
+      "family": "rsi_dip",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "gap_follow",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "gap_fade",
+      "timeframe": "1d",
+      "params": {
+        "threshold": 0.008
+      },
+      "train_min_points": 1481.0,
+      "passing_symbols": [
+        "MA"
+      ],
+      "awful_symbols": [
+        "CU",
+        "SR"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_GapFade_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "MA"
+      ],
+      "awful": [
+        "CU",
+        "SR"
+      ]
+    },
+    {
+      "family": "nr_break",
+      "timeframe": "1d",
+      "params": {
+        "length": 10,
+        "ratio": 0.6
+      },
+      "train_min_points": 4474.0,
+      "passing_symbols": [],
+      "awful_symbols": [
+        "SR",
+        "I",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_NrBreak_1d",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": [
+        "SR",
+        "I",
+        "MA"
+      ]
+    },
+    {
+      "family": "squeeze",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "chandelier",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "ema_cross",
+      "timeframe": "1h",
+      "params": {
+        "fast": 20,
+        "slow": 40
+      },
+      "train_min_points": 1507.0,
+      "passing_symbols": [
+        "CU",
+        "SR",
+        "I"
+      ],
+      "awful_symbols": [
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_EmaCross_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "SR",
+        "I"
+      ],
+      "awful": [
+        "MA"
+      ]
+    },
+    {
+      "family": "ema_cross_long",
+      "timeframe": "1h",
+      "params": {
+        "fast": 10,
+        "slow": 40
+      },
+      "train_min_points": 538.0,
+      "passing_symbols": [
+        "CU",
+        "SR",
+        "I"
+      ],
+      "awful_symbols": [
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_EmaCrossLong_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "SR",
+        "I"
+      ],
+      "awful": [
+        "MA"
+      ]
+    },
+    {
+      "family": "donchian",
+      "timeframe": "1h",
+      "params": {
+        "length": 20
+      },
+      "train_min_points": 1157.0,
+      "passing_symbols": [
+        "SR"
+      ],
+      "awful_symbols": [
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Donchian_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "SR"
+      ],
+      "awful": [
+        "MA"
+      ]
+    },
+    {
+      "family": "keltner",
+      "timeframe": "1h",
+      "params": {
+        "length": 20,
+        "width": 2.5
+      },
+      "train_min_points": 3350.0,
+      "passing_symbols": [
+        "CU",
+        "I"
+      ],
+      "awful_symbols": [
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Keltner_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "I"
+      ],
+      "awful": [
+        "MA"
+      ]
+    },
+    {
+      "family": "bb_break",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "bb_fade",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "rsi_fade",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "zscore",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "consec",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "ts_momentum",
+      "timeframe": "1h",
+      "params": {
+        "length": 10
+      },
+      "train_min_points": 1207.0,
+      "passing_symbols": [
+        "CU"
+      ],
+      "awful_symbols": [],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_TsMomentum_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU"
+      ],
+      "awful": []
+    },
+    {
+      "family": "macd",
+      "timeframe": "1h",
+      "params": {
+        "fast": 8,
+        "slow": 21,
+        "signal": 5
+      },
+      "train_min_points": 2607.0,
+      "passing_symbols": [
+        "MA"
+      ],
+      "awful_symbols": [
+        "SR"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Macd_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "MA"
+      ],
+      "awful": [
+        "SR"
+      ]
+    },
+    {
+      "family": "triple_ema",
+      "timeframe": "1h",
+      "params": {
+        "fast": 10,
+        "mid": 30,
+        "slow": 90
+      },
+      "train_min_points": 1042.0,
+      "passing_symbols": [
+        "CU",
+        "SR",
+        "I"
+      ],
+      "awful_symbols": [
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_TripleEma_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "SR",
+        "I"
+      ],
+      "awful": [
+        "MA"
+      ]
+    },
+    {
+      "family": "rsi_dip",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "gap_fade",
+      "timeframe": "1h",
+      "params": {
+        "threshold": 0.008
+      },
+      "train_min_points": 562.0,
+      "passing_symbols": [
+        "CU",
+        "I",
+        "MA"
+      ],
+      "awful_symbols": [
+        "SR"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_GapFade_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "I",
+        "MA"
+      ],
+      "awful": [
+        "SR"
+      ]
+    },
+    {
+      "family": "nr_break",
+      "timeframe": "1h",
+      "params": {
+        "length": 20,
+        "ratio": 0.6
+      },
+      "train_min_points": 1379.0,
+      "passing_symbols": [
+        "SR"
+      ],
+      "awful_symbols": [
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_NrBreak_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "SR"
+      ],
+      "awful": [
+        "MA"
+      ]
+    },
+    {
+      "family": "squeeze",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "chandelier",
+      "timeframe": "1h",
+      "params": {
+        "trend": 20,
+        "atr": 14,
+        "mult": 2.0
+      },
+      "train_min_points": 2963.0,
+      "passing_symbols": [
+        "CU",
+        "I"
+      ],
+      "awful_symbols": [
+        "SR"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Chandelier_1h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "I"
+      ],
+      "awful": [
+        "SR"
+      ]
+    },
+    {
+      "family": "prior_day",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "ema_cross",
+      "timeframe": "4h",
+      "params": {
+        "fast": 8,
+        "slow": 80
+      },
+      "train_min_points": 2152.0,
+      "passing_symbols": [
+        "CU",
+        "I"
+      ],
+      "awful_symbols": [
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_EmaCross_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "I"
+      ],
+      "awful": [
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "sma_cross",
+      "timeframe": "4h",
+      "params": {
+        "fast": 20,
+        "slow": 80
+      },
+      "train_min_points": 3236.0,
+      "passing_symbols": [
+        "CU",
+        "I",
+        "MA"
+      ],
+      "awful_symbols": [
+        "SR"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_SmaCross_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "I",
+        "MA"
+      ],
+      "awful": [
+        "SR"
+      ]
+    },
+    {
+      "family": "ema_cross_long",
+      "timeframe": "4h",
+      "params": {
+        "fast": 20,
+        "slow": 80
+      },
+      "train_min_points": 774.0,
+      "passing_symbols": [
+        "CU",
+        "I"
+      ],
+      "awful_symbols": [
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_EmaCrossLong_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU",
+        "I"
+      ],
+      "awful": [
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "donchian",
+      "timeframe": "4h",
+      "params": {
+        "length": 20
+      },
+      "train_min_points": 2911.0,
+      "passing_symbols": [
+        "CU"
+      ],
+      "awful_symbols": [
+        "SR",
+        "I",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Donchian_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU"
+      ],
+      "awful": [
+        "SR",
+        "I",
+        "MA"
+      ]
+    },
+    {
+      "family": "keltner",
+      "timeframe": "4h",
+      "params": {
+        "length": 40,
+        "width": 2.5
+      },
+      "train_min_points": 3071.0,
+      "passing_symbols": [
+        "I"
+      ],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Keltner_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "I"
+      ],
+      "awful": [
+        "CU",
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "bb_break",
+      "timeframe": "4h",
+      "params": {
+        "length": 20,
+        "width": 2.5
+      },
+      "train_min_points": 2085.0,
+      "passing_symbols": [
+        "MA"
+      ],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "I"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_BbBreak_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "MA"
+      ],
+      "awful": [
+        "CU",
+        "SR",
+        "I"
+      ]
+    },
+    {
+      "family": "bb_fade",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "rsi_fade",
+      "timeframe": "4h",
+      "params": {
+        "length": 14,
+        "low": 20,
+        "high": 80
+      },
+      "train_min_points": 706.0,
+      "passing_symbols": [],
+      "awful_symbols": [
+        "CU"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_RsiFade_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [],
+      "awful": [
+        "CU"
+      ]
+    },
+    {
+      "family": "zscore",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "ts_momentum",
+      "timeframe": "4h",
+      "params": {
+        "length": 20
+      },
+      "train_min_points": 2896.0,
+      "passing_symbols": [
+        "CU"
+      ],
+      "awful_symbols": [
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_TsMomentum_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU"
+      ],
+      "awful": [
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "macd",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "triple_ema",
+      "timeframe": "4h",
+      "params": {
+        "fast": 5,
+        "mid": 20,
+        "slow": 60
+      },
+      "train_min_points": 802.0,
+      "passing_symbols": [
+        "CU"
+      ],
+      "awful_symbols": [
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_TripleEma_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU"
+      ],
+      "awful": [
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "pullback",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "rsi_dip",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "gap_follow",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "gap_fade",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "nr_break",
+      "timeframe": "4h",
+      "params": {
+        "length": 20,
+        "ratio": 0.8
+      },
+      "train_min_points": 2449.0,
+      "passing_symbols": [
+        "CU"
+      ],
+      "awful_symbols": [
+        "SR",
+        "I",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_NrBreak_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "CU"
+      ],
+      "awful": [
+        "SR",
+        "I",
+        "MA"
+      ]
+    },
+    {
+      "family": "squeeze",
+      "timeframe": "4h",
+      "params": {
+        "length": 20,
+        "width": 2.0,
+        "quantile": 0.2
+      },
+      "train_min_points": 4503.0,
+      "passing_symbols": [
+        "I"
+      ],
+      "awful_symbols": [
+        "CU",
+        "SR",
+        "MA"
+      ],
+      "keeper": false,
+      "allow_live_trading": false,
+      "class_name": "Keeper_Squeeze_4h",
+      "reason": "holdout gate",
+      "holdout_pass": [
+        "I"
+      ],
+      "awful": [
+        "CU",
+        "SR",
+        "MA"
+      ]
+    },
+    {
+      "family": "chandelier",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "prior_day",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    },
+    {
+      "family": "orb",
+      "reason": "no copper-and-sugar train pass",
+      "holdout_pass": null,
+      "awful": null
+    }
+  ]
+}
